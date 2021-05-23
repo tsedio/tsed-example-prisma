@@ -1,17 +1,26 @@
-import {Controller, Get} from "@tsed/common";
+import {BodyParams, Controller, Get, Post} from "@tsed/common";
 import {Inject} from "@tsed/di";
-import {Returns} from "@tsed/schema";
-import {UserModel} from "@tsedio/prisma";
-import {UserService} from "../services/UserService";
+import {Groups, Returns, Summary} from "@tsed/schema";
+import {UserModel, UsersRepository} from "@tsedio/prisma";
+
+// import {UsersRepository} from "../services/UsersRepository";
 
 @Controller("/users")
 export class UsersController {
   @Inject()
-  service: UserService;
+  protected service: UsersRepository;
+
+  @Post("/")
+  @Summary("Create a new user")
+  @Returns(201, UserModel)
+  async signupUser(@BodyParams() @Groups("creation") user: UserModel): Promise<UserModel> {
+    return this.service.create({data: user});
+  }
 
   @Get("/")
+  @Summary("Filter posts by title or content")
   @(Returns(200, Array).Of(UserModel).Description("Return a list of User"))
   getAll() {
-    return this.service.users({});
+    return this.service.findMany();
   }
 }

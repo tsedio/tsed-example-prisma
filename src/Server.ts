@@ -10,7 +10,7 @@ import "@tsed/ajv";
 import "@tsed/swagger";
 import {config, rootDir} from "./config";
 import {IndexCtrl} from "./controllers/pages/IndexController";
-import {PrismaService} from "./services/PrismaService";
+// import {PrismaService} from "./services/PrismaService";
 
 @Configuration({
   ...config,

@@ -1,20 +1,23 @@
-import {Controller, Get, PathParams} from "@tsed/common";
+import {BodyParams, Controller, Delete, Get, PathParams, Post, Put} from "@tsed/common";
 import {Inject} from "@tsed/di";
-import {Name, Returns} from "@tsed/schema";
-import {PostService} from "../services/PostService";
+import {Description, Groups, Name, Returns, Summary} from "@tsed/schema";
 import {NotFound} from "@tsed/exceptions";
-import {PostModel} from "@tsedio/prisma";
+import {PostModel, PostsRepository} from "@tsedio/prisma";
+
+// OR import {PostsRepository} from "../../services/PostsRepository";
 
 @Controller("/posts")
 @Name("Posts")
 export class PostsController {
   @Inject()
-  service: PostService;
+  protected service: PostsRepository;
 
   @Get("/:id")
-  @(Returns(200, PostModel).Description("Get a Post by his id"))
+  @Summary("Fetch a single post by its id")
+  @Returns(200, PostModel)
+  @Returns(404)
   async getById(@PathParams("id") id: string): Promise<PostModel> {
-    const model = await this.service.post({id: Number(id)});
+    const model = await this.service.findUnique({where: {id: Number(id)}});
 
     if (!model) {
       throw new NotFound("Post not found");
@@ -23,10 +26,43 @@ export class PostsController {
     return model;
   }
 
+  @Post("/")
+  @Summary("Create a new post")
+  @Returns(201, PostModel)
+  createDraft(@BodyParams("post") @Groups("creation") post: PostModel, @BodyParams("authorEmail") authorEmail: string) {
+    return this.service.create({
+      data: {
+        title: post.title,
+        content: post.content,
+        author: {
+          connect: {email: authorEmail}
+        }
+      }
+    });
+  }
+
+  @Put("/publish/:id")
+  @Summary("Publish a post by its id")
+  @Returns(200, PostModel)
+  async publishPost(@PathParams("id") id: string): Promise<PostModel> {
+    return this.service.update({
+      where: {id: Number(id)},
+      data: {published: true}
+    });
+  }
+
+  @Delete("/:id")
+  @Summary("Delete a post by its id")
+  @Returns(200, PostModel)
+  async deletePost(@PathParams("id") id: string): Promise<PostModel> {
+    return this.service.delete({where: {id: Number(id)}});
+  }
+
   @Get("/search/:searchString")
+  @Description("Filter posts by title or content")
   @(Returns(200, Array).Of(PostModel))
   async getFilteredPosts(@PathParams("searchString") searchString: string): Promise<PostModel[]> {
-    return this.service.posts({
+    return this.service.findMany({
       where: {
         OR: [
           {

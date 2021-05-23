@@ -1,18 +1,19 @@
 import {Controller, Get} from "@tsed/common";
-import {PostService} from "../services/PostService";
 import {Inject} from "@tsed/di";
-import {PostModel} from "@tsedio/prisma";
-import {Returns} from "@tsed/schema";
+import {PostModel, PostsRepository} from "@tsedio/prisma";
+import {Returns, Summary} from "@tsed/schema";
+// import {PostsRepository} from "../services/PostsRepository";
 
 @Controller("/feeds")
 export class FeedsController {
   @Inject()
-  service: PostService;
+  protected service: PostsRepository;
 
   @Get("/")
+  @Summary("Fetch all published posts")
   @(Returns(200, Array).Of(PostModel))
-  getFeeds() {
-    return this.service.posts({
+  getFeeds(): Promise<PostModel[]> {
+    return this.service.findMany({
       where: {published: true}
     });
   }

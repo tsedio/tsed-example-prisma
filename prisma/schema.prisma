@@ -15,17 +15,23 @@ generator tsed {
 }
 
 model User {
+  /// @TsED.Groups('!creation')
   id    Int     @default(autoincrement()) @id
   email String  @unique
   name  String?
+  /// @TsED.Groups('!creation')
   posts Post[]
 }
 
 model Post {
+  /// @TsED.Groups('!creation')
   id        Int      @default(autoincrement()) @id
   title     String
   content   String?
+  /// @TsED.Groups('!creation')
   published Boolean? @default(false)
+  /// @TsED.Groups('!creation')
   author    User?    @relation(fields: [authorId], references: [id])
+  /// @TsED.Groups('!creation')
   authorId  Int?
 }

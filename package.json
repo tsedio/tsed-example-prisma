@@ -18,7 +18,7 @@
     "prisma:generate": "npx prisma generate"
   },
   "dependencies": {
-    "@tsedio/prisma": "1.0.2",
+    "@tsedio/prisma": "1.1.1",
     "@prisma/generator-helper": "2.22.1",
     "@prisma/sdk": "2.22.1",
     "@prisma/client": "2.22.1",
