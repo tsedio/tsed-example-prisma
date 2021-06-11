@@ -1,9 +1,7 @@
 import {BodyParams, Controller, Get, Post} from "@tsed/common";
 import {Inject} from "@tsed/di";
 import {Groups, Returns, Summary} from "@tsed/schema";
-import {UserModel, UsersRepository} from "@tsedio/prisma";
-
-// import {UsersRepository} from "../services/UsersRepository";
+import {UserModel, UsersRepository} from "prisma/generated/tsed";
 
 @Controller("/users")
 export class UsersController {

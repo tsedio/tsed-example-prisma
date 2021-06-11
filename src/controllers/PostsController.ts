@@ -2,8 +2,7 @@ import {BodyParams, Controller, Delete, Get, PathParams, Post, Put} from "@tsed/
 import {Inject} from "@tsed/di";
 import {Description, Groups, Name, Returns, Summary} from "@tsed/schema";
 import {NotFound} from "@tsed/exceptions";
-import {PostModel, PostsRepository} from "@tsedio/prisma";
-
+import {PostModel, PostsRepository} from "prisma/generated/tsed";
 // OR import {PostsRepository} from "../../services/PostsRepository";
 
 @Controller("/posts")

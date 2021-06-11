@@ -1,7 +1,7 @@
 import {Controller, Get} from "@tsed/common";
 import {Inject} from "@tsed/di";
-import {PostModel, PostsRepository} from "@tsedio/prisma";
 import {Returns, Summary} from "@tsed/schema";
+import {PostsRepository, PostModel} from "prisma/generated/tsed";
 // import {PostsRepository} from "../services/PostsRepository";
 
 @Controller("/feeds")
