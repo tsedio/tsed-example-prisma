@@ -1,5 +1,5 @@
 import { User } from "../client";
-import { Integer, Required, Property, Groups, Allow, CollectionOf } from "@tsed/schema";
+import { Integer, Required, Property, Groups, Email, Allow, CollectionOf } from "@tsed/schema";
 import { PostModel } from "./PostModel";
 
 export class UserModel implements User {
@@ -11,6 +11,7 @@ export class UserModel implements User {
 
   @Property(String)
   @Required()
+  @Email()
   email: string;
 
   @Property(String)
