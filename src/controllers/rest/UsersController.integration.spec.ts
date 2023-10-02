@@ -1,14 +1,14 @@
 import { PlatformTest } from "@tsed/common";
 import SuperTest from "supertest";
-import { PostsController } from "./PostsController";
-import { Server } from "../Server";
+import { UsersController } from "./UsersController";
+import { Server } from "../../Server";
 
-describe("PostsController", () => {
+describe("UsersController", () => {
   let request: SuperTest.SuperTest<SuperTest.Test>;
 
   beforeEach(PlatformTest.bootstrap(Server, {
     mount: {
-      "/": [PostsController]
+      "/": [UsersController]
     }
   }));
   beforeEach(() => {
@@ -17,8 +17,8 @@ describe("PostsController", () => {
 
   afterEach(PlatformTest.reset);
 
-  it("should call GET /posts", async () => {
-     const response = await request.get("/posts").expect(200);
+  it("should call GET /users", async () => {
+     const response = await request.get("/users").expect(200);
 
      expect(response.text).toEqual("hello");
   });

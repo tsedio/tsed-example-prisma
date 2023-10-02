@@ -1,15 +1,11 @@
-import {Configuration, Inject} from "@tsed/di";
-import {PlatformApplication} from "@tsed/common";
+import {Configuration} from "@tsed/di";
 import "@tsed/platform-express"; // /!\ keep this import
-import bodyParser from "body-parser";
-import compress from "compression";
-import cookieParser from "cookie-parser";
-import methodOverride from "method-override";
-import cors from "cors";
 import "@tsed/ajv";
 import "@tsed/swagger";
 import {config, rootDir} from "./config";
-import {IndexCtrl} from "./controllers/pages/IndexController";
+import * as rest from "./controllers/rest";
+import * as pages from "./controllers/pages";
+import "./boot/BootDBModule";
 // import {PrismaService} from "./services/PrismaService";
 
 @Configuration({
@@ -18,9 +14,10 @@ import {IndexCtrl} from "./controllers/pages/IndexController";
   httpPort: process.env.PORT || 8083,
   httpsPort: false, // CHANGE
   mount: {
-    "/rest": [`${rootDir}/controllers/**/*.ts`],
-    "/": [IndexCtrl]
+    "/rest": [...Object.values(rest)],
+    "/": [...Object.values(pages)]
   },
+  disableComponentsScan: true,
   swagger: [
     {
       path: "/docs",
@@ -31,27 +28,13 @@ import {IndexCtrl} from "./controllers/pages/IndexController";
     root: `${rootDir}/../views`,
     viewEngine: "ejs"
   },
-  exclude: ["**/*.spec.ts"],
-  imports: [PrismaService]
+  middlewares: [
+    "cors",
+    "cookie-parser",
+    "compression",
+    "method-override",
+    "json-parser",
+    {use: "urlencoded-parser", options: {extended: true}}
+  ]
 })
-export class Server {
-  @Inject()
-  app: PlatformApplication;
-
-  @Configuration()
-  settings: Configuration;
-
-  $beforeRoutesInit(): void {
-    this.app
-      .use(cors())
-      .use(cookieParser())
-      .use(compress({}))
-      .use(methodOverride())
-      .use(bodyParser.json())
-      .use(
-        bodyParser.urlencoded({
-          extended: true
-        })
-      );
-  }
-}
+export class Server {}

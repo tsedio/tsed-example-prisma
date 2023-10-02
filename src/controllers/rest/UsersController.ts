@@ -1,7 +1,7 @@
 import {BodyParams, Controller, Get, Post} from "@tsed/common";
 import {Inject} from "@tsed/di";
 import {Groups, Returns, Summary} from "@tsed/schema";
-import {UserModel, UsersRepository} from "@tsedio/prisma";
+import {UserModel, UsersRepository} from "@tsed/prisma";
 
 // import {UsersRepository} from "../services/UsersRepository";
 
@@ -14,12 +14,14 @@ export class UsersController {
   @Summary("Create a new user")
   @Returns(201, UserModel)
   async signupUser(@BodyParams() @Groups("creation") user: UserModel): Promise<UserModel> {
-    return this.service.create({data: user});
+    return this.service.create({
+      data: user as any
+    });
   }
 
   @Get("/")
   @Summary("Filter posts by title or content")
-  @(Returns(200, Array).Of(UserModel).Description("Return a list of User"))
+  @Returns(200, Array).Of(UserModel).Description("Return a list of User")
   getAll() {
     return this.service.findMany();
   }
