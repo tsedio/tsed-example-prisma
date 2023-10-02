@@ -17,6 +17,7 @@ generator tsed {
 generator tsedTest {
   provider = "tsed-prisma"
   output = "./test/generated"
+  emitTranspiledCode = false
 }
 
 model User {
