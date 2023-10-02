@@ -1,7 +1,7 @@
 import { PlatformTest } from "@tsed/common";
 import SuperTest from "supertest";
 import { FeedsController } from "./FeedsController";
-import { Server } from "../Server";
+import { Server } from "../../Server";
 
 describe("FeedsController", () => {
   let request: SuperTest.SuperTest<SuperTest.Test>;

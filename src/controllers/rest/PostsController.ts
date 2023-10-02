@@ -2,7 +2,7 @@ import {BodyParams, Controller, Delete, Get, PathParams, Post, Put} from "@tsed/
 import {Inject} from "@tsed/di";
 import {Description, Groups, Name, Returns, Summary} from "@tsed/schema";
 import {NotFound} from "@tsed/exceptions";
-import {PostModel, PostsRepository} from "@tsedio/prisma";
+import {PostModel, PostsRepository} from "@tsed/prisma";
 
 // OR import {PostsRepository} from "../../services/PostsRepository";
 
@@ -60,7 +60,7 @@ export class PostsController {
 
   @Get("/search/:searchString")
   @Description("Filter posts by title or content")
-  @(Returns(200, Array).Of(PostModel))
+  @Returns(200, Array).Of(PostModel)
   async getFilteredPosts(@PathParams("searchString") searchString: string): Promise<PostModel[]> {
     return this.service.findMany({
       where: {

@@ -1,4 +1,4 @@
-import {PlatformLoggerSettings, $log} from "@tsed/common";
+import {$log} from "@tsed/common";
 import {isProduction} from "../env";
 
 if (isProduction) {
@@ -19,6 +19,7 @@ if (isProduction) {
   });
 }
 
-export const loggerConfig: Partial<PlatformLoggerSettings> = {
-  disableRoutesSummary: isProduction
+export const loggerConfig: Partial<any> = {
+  disableRoutesSummary: isProduction,
+  logStart: false
 };

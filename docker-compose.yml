@@ -14,7 +14,7 @@ services:
     stdin_open: true
     tty: true
   postgres:
-    image: postgres:9.6.1
+    image: postgres:11.21-bullseye
     ports:
       - '5432:5432'
     environment:
