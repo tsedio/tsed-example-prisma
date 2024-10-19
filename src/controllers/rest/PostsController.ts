@@ -60,7 +60,7 @@ export class PostsController {
 
   @Get("/search/:searchString")
   @Description("Filter posts by title or content")
-  @Returns(200, Array).Of(PostModel)
+  @(Returns(200, Array).Of(PostModel))
   async getFilteredPosts(@PathParams("searchString") searchString: string): Promise<PostModel[]> {
     return this.service.findMany({
       where: {

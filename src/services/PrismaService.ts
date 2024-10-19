@@ -4,7 +4,10 @@ import {Configuration} from "@tsed/di";
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnInit, OnDestroy {
-  constructor(@Configuration() settings: Configuration, protected logger: Logger) {
+  constructor(
+    @Configuration() settings: Configuration,
+    protected logger: Logger
+  ) {
     super(settings.get("prisma"));
   }
 

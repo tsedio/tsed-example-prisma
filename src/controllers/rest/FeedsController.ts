@@ -11,7 +11,7 @@ export class FeedsController {
 
   @Get("/")
   @Summary("Fetch all published posts")
-  @Returns(200, Array).Of(PostModel)
+  @(Returns(200, Array).Of(PostModel))
   getFeeds(): Promise<PostModel[]> {
     return this.service.findMany({
       where: {published: true}

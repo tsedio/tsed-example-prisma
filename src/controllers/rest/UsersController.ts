@@ -15,13 +15,13 @@ export class UsersController {
   @Returns(201, UserModel)
   async signupUser(@BodyParams() @Groups("creation") user: UserModel): Promise<UserModel> {
     return this.service.create({
-      data: user as any
+      data: user as never
     });
   }
 
   @Get("/")
   @Summary("Filter posts by title or content")
-  @Returns(200, Array).Of(UserModel).Description("Return a list of User")
+  @(Returns(200, Array).Of(UserModel).Description("Return a list of User"))
   getAll() {
     return this.service.findMany();
   }
