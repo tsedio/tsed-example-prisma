@@ -52,3 +52,5 @@ test/**/*.js.map
 /public
 /dist
 /prisma/generated
+
+.yarn/install-state.gz

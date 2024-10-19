@@ -16,20 +16,20 @@
     "test:lint:fix": "eslint src --ext .ts --fix"
   },
   "dependencies": {
+    "@prisma/client": "5.3.1",
     "@prisma/generator-helper": "5.3.1",
     "@prisma/sdk": "4.0.0",
-    "@prisma/client": "5.3.1",
-    "@tsed/ajv": "7.36.5",
-    "@tsed/prisma": "7.36.5",
-    "@tsed/common": "^7.36.5",
-    "@tsed/core": "^7.36.5",
-    "@tsed/di": "^7.36.5",
-    "@tsed/exceptions": "^7.36.5",
-    "@tsed/json-mapper": "^7.36.5",
-    "@tsed/platform-express": "^7.36.5",
-    "@tsed/schema": "^7.36.5",
-    "@tsed/swagger": "^7.36.5",
-    "@tsed/typeorm": "^7.36.5",
+    "@tsed/ajv": "7.83.4",
+    "@tsed/common": "7.83.4",
+    "@tsed/core": "7.83.4",
+    "@tsed/di": "7.83.4",
+    "@tsed/exceptions": "7.83.4",
+    "@tsed/json-mapper": "7.83.4",
+    "@tsed/platform-express": "7.83.4",
+    "@tsed/prisma": "7.83.4",
+    "@tsed/schema": "7.83.4",
+    "@tsed/swagger": "7.83.4",
+    "@tsed/typeorm": "7.83.4",
     "ajv": "7.2.4",
     "barrelsby": "2.8.1",
     "body-parser": "^1.19.0",
@@ -40,13 +40,13 @@
     "dotenv": "^9.0.1",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
-    "prisma": "^5.2.0",
-    "typeorm": "^0.2.32"
+    "prisma": "^5.2.0"
   },
   "devDependencies": {
-    "@tsed/cli-plugin-eslint": "4.6.4",
-    "@tsed/cli-plugin-jest": "4.6.4",
-    "@tsed/cli-plugin-typeorm": "4.6.4",
+    "@tsed/barrels": "5.4.3",
+    "@tsed/cli-plugin-eslint": "5.4.3",
+    "@tsed/cli-plugin-jest": "5.4.3",
+    "@tsed/cli-plugin-typeorm": "5.4.3",
     "@types/compression": "^1.7.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.10",
@@ -62,16 +62,15 @@
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-prettier": "5.0.0",
     "husky": "8.0.3",
-    "postgres": "3.3.5",
     "jest": "29.7.0",
     "lint-staged": "14.0.1",
+    "postgres": "3.3.5",
     "prettier": "3.0.3",
     "supertest": "6.3.3",
     "ts-jest": "29.1.1",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
-    "tsconfig-paths": "4.2.0",
-    "typescript": "5.2.2"
+    "typescript": "5.6.3"
   },
   "tsed": {
     "packageManager": "yarn",
@@ -82,5 +81,6 @@
       "pre-commit": "lint-staged",
       "post-commit": "git update-index --again"
     }
-  }
+  },
+  "packageManager": "yarn@4.5.1"
 }
