@@ -1,8 +1,8 @@
-import {BodyParams, Controller, Delete, Get, PathParams, Post, Put} from "@tsed/common";
-import {Inject} from "@tsed/di";
-import {Description, Groups, Name, Returns, Summary} from "@tsed/schema";
-import {NotFound} from "@tsed/exceptions";
-import {PostModel, PostsRepository} from "@tsed/prisma";
+import { Controller, Inject } from "@tsed/di";
+import { NotFound } from "@tsed/exceptions";
+import { BodyParams, PathParams } from "@tsed/platform-params";
+import { PostModel, PostsRepository } from "@tsed/prisma";
+import { Delete, Description, Get, Groups, Name, Post, Put, Returns, Summary } from "@tsed/schema";
 
 // OR import {PostsRepository} from "../../services/PostsRepository";
 
@@ -17,7 +17,7 @@ export class PostsController {
   @Returns(200, PostModel)
   @Returns(404)
   async getById(@PathParams("id") id: string): Promise<PostModel> {
-    const model = await this.service.findUnique({where: {id: Number(id)}});
+    const model = await this.service.findUnique({ where: { id: Number(id) } });
 
     if (!model) {
       throw new NotFound("Post not found");
@@ -35,7 +35,7 @@ export class PostsController {
         title: post.title,
         content: post.content,
         author: {
-          connect: {email: authorEmail}
+          connect: { email: authorEmail }
         }
       }
     });
@@ -46,8 +46,8 @@ export class PostsController {
   @Returns(200, PostModel)
   async publishPost(@PathParams("id") id: string): Promise<PostModel> {
     return this.service.update({
-      where: {id: Number(id)},
-      data: {published: true}
+      where: { id: Number(id) },
+      data: { published: true }
     });
   }
 
@@ -55,7 +55,7 @@ export class PostsController {
   @Summary("Delete a post by its id")
   @Returns(200, PostModel)
   async deletePost(@PathParams("id") id: string): Promise<PostModel> {
-    return this.service.delete({where: {id: Number(id)}});
+    return this.service.delete({ where: { id: Number(id) } });
   }
 
   @Get("/search/:searchString")
@@ -66,10 +66,10 @@ export class PostsController {
       where: {
         OR: [
           {
-            title: {contains: searchString}
+            title: { contains: searchString }
           },
           {
-            content: {contains: searchString}
+            content: { contains: searchString }
           }
         ]
       }

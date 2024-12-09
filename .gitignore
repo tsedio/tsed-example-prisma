@@ -35,8 +35,8 @@ node_modules
 typings/
 
 # Typescript
-src/**/*.js
-src/**/*.js.map
+/**/*.js
+/**/*.js.map
 test/**/*.js
 test/**/*.js.map
 
@@ -51,6 +51,7 @@ test/**/*.js.map
 # Project
 /public
 /dist
-/prisma/generated
 
-.yarn/install-state.gz
+#env
+.env.local
+.env.development

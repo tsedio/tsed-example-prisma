@@ -1,7 +1,7 @@
-import {BodyParams, Controller, Get, Post} from "@tsed/common";
-import {Inject} from "@tsed/di";
-import {Groups, Returns, Summary} from "@tsed/schema";
-import {UserModel, UsersRepository} from "@tsed/prisma";
+import { Controller, Inject } from "@tsed/di";
+import { BodyParams } from "@tsed/platform-params";
+import { UserModel, UsersRepository } from "@tsed/prisma";
+import { Get, Groups, Post, Returns, Summary } from "@tsed/schema";
 
 // import {UsersRepository} from "../services/UsersRepository";
 

@@ -1,5 +1,6 @@
-import {PlatformTest} from "@tsed/common";
-import {FeedsController} from "./FeedsController";
+import { PlatformTest } from "@tsed/common";
+
+import { FeedsController } from "./FeedsController";
 
 describe("FeedsController", () => {
   beforeEach(PlatformTest.create);

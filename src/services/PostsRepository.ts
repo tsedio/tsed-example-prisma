@@ -1,11 +1,11 @@
-import {Inject, Injectable} from "@tsed/di";
-import {Prisma, Post} from "@prisma/client";
-import {PrismaService} from "../services/PrismaService";
+import { Post, Prisma } from "@prisma/client";
+import { inject, Injectable } from "@tsed/di";
+
+import { PrismaService } from "../services/PrismaService.js";
 
 @Injectable()
 export class PostsRepository {
-  @Inject()
-  protected prisma: PrismaService;
+  protected prisma = inject(PrismaService);
 
   get collection() {
     return this.prisma.post;

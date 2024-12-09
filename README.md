@@ -1,16 +1,16 @@
 <p style="text-align: center" align="center">
-  <a href="https://tsed.io" target="_blank"><img src="https://tsed.io/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
+  <a href="https://tsed.dev" target="_blank"><img src="https://tsed.dev/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
 </p>
 
 <div align="center">
-  <h1>Ts.ED - cli-test-2</h1>
+  <h1>Ts.ED - tsed-example-prisma</h1>
   <br />
   <div align="center">
-    <a href="https://cli.tsed.io/">Website</a>
+    <a href="https://cli.tsed.dev/">Website</a>
     <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-    <a href="https://cli.tsed.io/getting-started.html">Getting started</a>
+    <a href="https://cli.tsed.dev/getting-started.html">Getting started</a>
     <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-    <a href="https://api.tsed.io/rest/slack/tsedio/tsed">Slack</a>
+    <a href="https://slack.tsed.io">Slack</a>
     <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
     <a href="https://twitter.com/TsED_io">Twitter</a>
   </div>
@@ -21,18 +21,18 @@
 
 ## Getting started
 
-> **Important!** Ts.ED requires Node >= 14, Express >= 4 and TypeScript >= 4.
+> **Important!** Ts.ED requires Node >= 20.x or Bun.js and TypeScript >= 5.
 
 ```batch
 # install dependencies
-$ yarn install
+$ npm install
 
 # serve
-$ yarn start
+$ npm run start
 
 # build for production
-$ yarn build
-$ yarn start:prod
+$ npm run build
+$ npm run start:prod
 ```
 
 ## Docker
@@ -45,23 +45,16 @@ docker compose build
 docker compose up
 ```
 
-## Barrelsby
+## Barrels
 
-This project uses [barrelsby](https://www.npmjs.com/package/barrelsby) to generate index files to import the controllers.
+This project uses [barrels](https://www.npmjs.com/package/@tsed/barrels) to generate index files to import the controllers.
 
-Edit `.barreslby.json` to customize it:
+Edit `.barrels.json` to customize it:
 
 ```json
 {
-  "directory": [
-    "./src/controllers/rest",
-    "./src/controllers/pages"
-  ],
-  "exclude": [
-    "__mock__",
-    "__mocks__",
-    ".spec.ts"
-  ],
+  "directory": ["./src/controllers/rest", "./src/controllers/pages"],
+  "exclude": ["**/__mock__", "**/__mocks__", "**/*.spec.ts"],
   "delete": true
 }
 ```

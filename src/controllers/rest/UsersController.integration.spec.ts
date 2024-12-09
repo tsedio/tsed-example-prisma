@@ -1,11 +1,10 @@
-import {PlatformTest} from "@tsed/common";
+import { PlatformTest } from "@tsed/platform-http/testing";
 import SuperTest from "supertest";
-import {UsersController} from "./UsersController";
-import {Server} from "../../Server";
+
+import { Server } from "../../Server.js";
+import { UsersController } from "./UsersController.js";
 
 describe("UsersController", () => {
-  let request: SuperTest.SuperTest<SuperTest.Test>;
-
   beforeEach(
     PlatformTest.bootstrap(Server, {
       mount: {
@@ -13,13 +12,12 @@ describe("UsersController", () => {
       }
     })
   );
-  beforeEach(() => {
-    request = SuperTest(PlatformTest.callback());
-  });
 
   afterEach(PlatformTest.reset);
 
   it("should call GET /users", async () => {
+    const request = SuperTest(PlatformTest.callback());
+
     const response = await request.get("/users").expect(200);
 
     expect(response.text).toEqual("hello");
