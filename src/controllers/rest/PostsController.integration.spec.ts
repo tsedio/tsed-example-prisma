@@ -1,25 +1,23 @@
-import { PlatformTest } from "@tsed/common";
+import { PlatformTest } from "@tsed/platform-http/testing";
 import SuperTest from "supertest";
-import { PostsController } from "./PostsController";
-import { Server } from "../../Server";
+
+import { Server } from "../../Server.js";
+import { PostsController } from "./PostsController.js";
 
 describe("PostsController", () => {
-  let request: SuperTest.SuperTest<SuperTest.Test>;
-
-  beforeEach(PlatformTest.bootstrap(Server, {
-    mount: {
-      "/": [PostsController]
-    }
-  }));
-  beforeEach(() => {
-    request = SuperTest(PlatformTest.callback());
-  });
-
+  beforeEach(
+    PlatformTest.bootstrap(Server, {
+      mount: {
+        "/": [PostsController]
+      }
+    })
+  );
   afterEach(PlatformTest.reset);
 
   it("should call GET /posts", async () => {
-     const response = await request.get("/posts").expect(200);
+    const request = SuperTest(PlatformTest.callback());
+    const response = await request.get("/posts").expect(200);
 
-     expect(response.text).toEqual("hello");
+    expect(response.text).toEqual("hello");
   });
 });

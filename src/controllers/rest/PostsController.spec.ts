@@ -1,4 +1,5 @@
 import { PlatformTest } from "@tsed/common";
+
 import { PostsController } from "./PostsController";
 
 describe("PostsController", () => {

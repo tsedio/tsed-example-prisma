@@ -14,14 +14,9 @@ generator tsed {
   provider = "tsed-prisma"
 }
 
-generator tsedTest {
-  provider = "tsed-prisma"
-  output = "./test/generated"
-}
-
 model User {
   /// @TsED.Groups('!creation')
-  id    Int     @default(autoincrement()) @id
+  id    Int     @id @default(autoincrement())
   /// @TsED.Email()
   email String  @unique
   name  String?
@@ -31,7 +26,7 @@ model User {
 
 model Post {
   /// @TsED.Groups('!creation')
-  id        Int      @default(autoincrement()) @id
+  id        Int      @id @default(autoincrement())
   title     String
   content   String?
   /// @TsED.Groups('!creation')

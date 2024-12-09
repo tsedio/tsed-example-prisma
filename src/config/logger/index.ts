@@ -1,5 +1,7 @@
-import {$log} from "@tsed/common";
-import {isProduction} from "../env";
+import { DILoggerOptions } from "@tsed/di";
+import { $log } from "@tsed/logger";
+
+import { isProduction } from "../envs/index.js";
 
 if (isProduction) {
   $log.appenders.set("stdout", {
@@ -19,7 +21,6 @@ if (isProduction) {
   });
 }
 
-export const loggerConfig: Partial<any> = {
-  disableRoutesSummary: isProduction,
-  logStart: false
+export default <DILoggerOptions>{
+  disableRoutesSummary: isProduction
 };

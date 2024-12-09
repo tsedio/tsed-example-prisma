@@ -1,4 +1,5 @@
 import { PlatformTest } from "@tsed/common";
+
 import { FeedsController } from "./FeedsController";
 
 describe("FeedsController", () => {

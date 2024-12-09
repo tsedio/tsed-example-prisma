@@ -1,12 +1,12 @@
-import {join} from "path";
-import {loggerConfig} from "./logger";
+import { readFileSync } from "fs";
 
-const {version} = require("../../package.json");
-export const rootDir = join(__dirname, "..");
+import { envs } from "./envs/index.js";
+import loggerConfig from "./logger/index.js";
+const pkg = JSON.parse(readFileSync("./package.json", { encoding: "utf8" }));
 
 export const config: Partial<TsED.Configuration> = {
-  version,
-  rootDir,
+  version: pkg.version,
+  envs,
   logger: loggerConfig
   // additional shared configuration
 };

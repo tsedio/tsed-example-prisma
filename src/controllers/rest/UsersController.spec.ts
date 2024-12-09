@@ -1,5 +1,6 @@
-import { PlatformTest } from "@tsed/common";
-import { UsersController } from "./UsersController";
+import { PlatformTest } from "@tsed/platform-http/testing";
+
+import { UsersController } from "./UsersController.js";
 
 describe("UsersController", () => {
   beforeEach(PlatformTest.create);

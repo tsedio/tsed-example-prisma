@@ -1,15 +1,11 @@
-import {Inject, Module} from "@tsed/di";
-import {Constant} from "@tsed/common";
-import {Env} from "@tsed/core";
-import {UsersRepository} from "@tsed/prisma";
+import { Env } from "@tsed/core";
+import { constant, inject, Module } from "@tsed/di";
+import { UsersRepository } from "@tsed/prisma";
 
 @Module()
 export class BootDBModule {
-  @Constant("env", Env.DEV)
-  env: Env;
-
-  @Inject()
-  usersRepository: UsersRepository;
+  protected env = constant<Env>("env", Env.DEV);
+  protected usersRepository = inject(UsersRepository);
 
   async $onReady() {
     if (this.env === Env.DEV) {
